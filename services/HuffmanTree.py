@@ -12,5 +12,12 @@ class HuffmanTree():
         self.left = left
         self.right = right
     def accessChar(self,binary):
-        if binary % 2 == 0:
+        for bit in binary: # binary must be a 'bit-iterable' data structure, in that iteration of bits must be simulated.
+						   # This can be accomplished by using bitshifts.
+						   # ex. 1101 1100 -> 1011 1000 & 1000 0000 returns a True boolean value, -> 0111 0000 & 1000 0000, etc to iterate through.
+			if bit:
+				# go right
+			else:
+				# go left
+		
         
