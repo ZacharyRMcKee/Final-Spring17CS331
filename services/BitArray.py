@@ -1,4 +1,4 @@
-class BitArray:
+class ByteBitArray:
     # example:
     # |FFFF|0F0F|FACE|...
     #    0    1    2
@@ -12,7 +12,7 @@ class BitArray:
     def __str__(self):
         for byte in self.val:
             for bit in reversed(range(8)): ## TODO: check efficiency forwards and backwards.
-                print str((byte >> bit) % 2,end='')
+                print(str((byte >> bit) % 2),end='')
             print("|",end='')
         
 
