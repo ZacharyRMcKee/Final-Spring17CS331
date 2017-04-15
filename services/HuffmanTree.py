@@ -11,13 +11,13 @@ class HuffmanTree():
     def setChildren(self,left,right):
         self.left = left
         self.right = right
-    def accessChar(self,binary): # TODO: also include a terminator when max character has been reached
-        for bit in binary: # binary must be a 'bit-iterable' data structure, in that iteration of bits must be simulated.
+   # def accessChar(self,binary): # TODO: also include a terminator when max character has been reached
+   #     for bit in binary: # binary must be a 'bit-iterable' data structure, in that iteration of bits must be simulated.
 						   # This can be accomplished by using bitshifts.
 						   # ex. 1101 1100 -> 1011 1000 & 1000 0000 returns a True boolean value, -> 0111 0000 & 1000 0000, etc to iterate through.
-			if bit:
+	#		if bit:
 				# go right
-			else:
+	#		else:
 				# go left
 		
         
