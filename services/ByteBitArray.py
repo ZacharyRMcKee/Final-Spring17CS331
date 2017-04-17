@@ -9,7 +9,7 @@ class ByteBitArray:
             self.val = bytearray(len(arg))
             for i in range(len(arg)):
                 self.val[i] = arg[i]
-        elif type(arg) is bytes:
+        elif type(arg) is bytes or type(arg) is list:
             self.val = bytearray(len(arg))
             for i in range(len(arg)):
                 self.val[i] = arg[i]
