@@ -1,14 +1,16 @@
 class HuffmanTree():
-''' This class is used for creating Huffman Trees from a hash table input. In this case,
+    ''' This class is used for creating Huffman Trees from a hash table input. In this case,
     a Python library dict is used for use as a hash table. '''
-
+    
     class Node:
         def __init__(self,weight,char=None,left=None,right=None):
             self.weight = weight # weight of the node. When paired with a character this means the frequency of that character.
             self.char = char # Should be used on leaves only, for non-leaf nodes this should be set to None.
             self.left = left
             self.right = right
-    def __init__(self,weight,char,left=None,right=None): # an empty HuffmanTree cannot exist
+        def __str__(self):
+            return "(" + repr(self.char) + ", " + str(self.weight) + ")"
+    def __init__(self,weight,char=None,left=None,right=None): # an empty HuffmanTree cannot exist
         self.root = self.Node(weight,char,left,right) # When a tree is created, it is one of a forest of trees that are to be merged.
     
     def setChildren(self,left,right):
@@ -23,15 +25,33 @@ class HuffmanTree():
         try:
             while(True):
                 output += self.traverseTree(iterator)
-            break
         except StopIteration:
-        print(output)
+            print(output)
                     
     def traverseTree(self,binary):
         if self.root.char:
-            return char
+            return self # should be char?
         if bit:
             traverseTree(self.right,next(binary))
         else:
             traverseTree(self.left,next(binary))
-    
+    def __str__(self):
+        return str(self.root.weight)
+    def printTree(self,level,code=""):
+        if self.root.left is None:
+            left = ""
+        else:
+            left = "\n" + "|" + self.root.left.printTree(level+1,code + "0")
+        if self.root.right is None:
+            right = ""
+        else:
+            right = "\n" + "|" + self.root.right.printTree(level+1,code + "1")
+        if self.root.char:
+            out = ", " + code
+        else:
+            out = ""
+        parent = str(self.root)
+        return "\t"*(level) + parent + out + left + right
+        
+    def __repr__(self):
+        return str(self)

@@ -1,6 +1,6 @@
 from HuffmanTree import *
 def codify(dict):
-    array = [(key,value) for key, value in dict.items()] # convert dict into a list of (key, value) tuples
+    array = [(char,weight) for char, weight in dict.items()] # convert dict into a list of (key, value) tuples
     list = []
     for tup in array: # make list of tuples of all items in dict with values > 0 (should never have negative values)
         if tup[1] != 0:
@@ -8,10 +8,18 @@ def codify(dict):
     list = sorted(list,key = lambda tup: tup[1]) # sort list by least to greatest value in [(key,value)] list
     forest = []
     for i in list:
-        forest.append(HuffmanTree(i[0],i[1]))
+        forest.append(HuffmanTree(i[1],i[0]))
     print(forest)
     
-    
+    while(len(forest) > 1): ## TODO: optimize if needed, there is most likely a better way than calling sorted()
+        newTree = HuffmanTree(forest[0].root.weight+forest[1].root.weight,left=forest[0],right=forest[1])
+        forest = forest[2:]
+        forest.append(newTree)
+        forest = sorted(forest,key= lambda tree: tree.root.weight)
+        print(forest)
+    print(forest)
+    return forest
+
     
     
 
