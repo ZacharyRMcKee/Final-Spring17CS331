@@ -1,5 +1,5 @@
 from HuffmanTree import *
-def codify(dict):
+def preprocess(dict):
     array = [(char,weight) for char, weight in dict.items()] # convert dict into a list of (key, value) tuples
     list = []
     for tup in array: # make list of tuples of all items in dict with values > 0 (should never have negative values)
@@ -12,13 +12,13 @@ def codify(dict):
     print(forest)
     
     while(len(forest) > 1): ## TODO: optimize if needed, there is most likely a better way than calling sorted()
-        newTree = HuffmanTree(forest[0].root.weight+forest[1].root.weight,left=forest[0],right=forest[1])
+        newTree = HuffmanTree(forest[0].root.weight+forest[1].root.weight,left=forest[0].root,right=forest[1].root)
         forest = forest[2:]
         forest.append(newTree)
         forest = sorted(forest,key= lambda tree: tree.root.weight)
         print(forest)
     print(forest)
-    return forest
+    return forest[0]
 
     
     
