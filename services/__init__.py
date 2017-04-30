@@ -1,1 +1,1 @@
-__all__ = ["hash_input","huffman"]
+__all__ = ["hash_input","huffman","HuffmanTree","ByteBitArray"]

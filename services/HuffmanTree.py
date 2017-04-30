@@ -10,6 +10,23 @@ class HuffmanTree():
             self.right = right
         def __str__(self):
             return "(" + repr(self.char) + ", " + str(self.weight) + ")"
+        def printTree(self,level,code=""):
+            '''Graphically prints out the HuffmanTree.'''
+            if self.left is None:
+                left = ""
+            else:
+                left = "\n" + "|" + self.left.printTree(level+1,code + "0")
+            if self.right is None:
+                right = ""
+            else:
+                right = "\n" + "|" + self.right.printTree(level+1,code + "1")
+            if self.char:
+                out = ", " + code
+            else:
+                out = ""
+            parent = str(self)
+            return "\t"*(level) + parent + out + left + right
+            
     def __init__(self,weight,char=None,left=None,right=None): # an empty HuffmanTree cannot exist
         self.root = self.Node(weight,char,left,right) # When a tree is created, it is one of a forest of trees that are to be merged.
     
@@ -37,7 +54,7 @@ class HuffmanTree():
         else:
             traverseTree(self.left,next(binary))
     def __str__(self):
-        return str(self.root.weight)
+        return self.printTree(0,"")
     def printTree(self,level,code=""):
         '''Graphically prints out the HuffmanTree.'''
         if self.root.left is None:
