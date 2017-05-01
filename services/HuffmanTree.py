@@ -79,7 +79,7 @@ class HuffmanTree():
     def createDictionary(self):
         # implement depth-first search, return a dictionary with keys = characters,
         # and values equal to their binary codes.
-        dict = dfs(self.root)
+        dict = HuffmanTree.dfs(self.root)
         return dict
         
         
@@ -93,28 +93,21 @@ class HuffmanTree():
         out = {}
         left = {}
         right = {}
-        print(node)
         
         if node.left:   # Does there exist a left child node?
             if node.left.char:  # Is it a leaf (Only leaves have chars)?
                 left[node.left.char] = code + '0'
-                print(node.left.char,code+'0')
             else:
-                print("Calling go down left")
                 left = HuffmanTree.dfs(node.left,code + '0')
         if node.right:  # Does there exist a right child node?
             if node.right.char: # Is it a leaf (Only leaves have chars)?
                 right[node.right.char] = code + '1'
             else:
-                print("Calling go down right")
                 right = HuffmanTree.dfs(node.right,code + '1')
-               
-        print(type(left))
         if left: # Do we have a dictionary generated from the left child?
             out.update(left)
         if right:# Do we have a dictionary generated from the right child?
             out.update(right)
-        print(out)
         return out
         
             
