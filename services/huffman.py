@@ -45,9 +45,8 @@ def encode(dict,content,outfile,tree):
                     counter -= 1
                 else:
                     by.append(buffer)
-                    if len(by) > 15:
-                        out.write(by)
-                        by = bytearray()
+                    out.write(by)
+                    by = bytearray()
                     counter = 7
                     buffer = 0
     if counter != 7:
