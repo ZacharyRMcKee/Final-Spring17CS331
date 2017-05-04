@@ -1,6 +1,8 @@
 import services.HuffmanTree
 import pickle
 import services.ByteBitArray
+
+
 def preprocess(dict):
     array = [(char,weight) for char, weight in dict.items()] # convert dict into a list of (key, value) tuples
     list = []
@@ -20,7 +22,7 @@ def preprocess(dict):
     print("\nHuffman Tree created!")
     return forest[0]
     
-    
+ 
 def encode(dict,content,outfile,tree):
     '''Input should consist of a huffman-encoded dictionary,
     with keys equal to ASCII characters, and values equal to
@@ -56,7 +58,7 @@ def encode(dict,content,outfile,tree):
         pickle.dump(tree,dout,protocol=pickle.HIGHEST_PROTOCOL)
     
     
-    
+
 def decode(outfile):
     with open("huff.hex","rb") as dout:
         tree = pickle.load(dout)
@@ -65,8 +67,11 @@ def decode(outfile):
     bytestream = services.ByteBitArray.ByteBitArray(coded.read())
     output = open("decoded.txt","w")
     i = 0
-    output.write(tree.decodeTree(bytestream))
-
+    try:
+        tree.decodeTree(bytestream,output)
+    except StopIteration:
+        print("We're done!")
+    
 
 
 

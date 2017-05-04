@@ -42,21 +42,23 @@ class HuffmanTree():
     def setChildren(self,left,right):
         self.root.left = left
         self.root.right = right
-    #@profile
-    def decodeTree(self,binary): # TODO: also include a terminator when max character has been reached
+    def decodeTree(self,binary,outfile): # TODO: also include a terminator when max character has been reached
         ''' binary must be a 'bit-iterable' data structure, in that iteration of bits must be simulated.
         # This can be accomplished by using bitshifts.
         # ex. 1101 1100 -> 1011 1000 & 1000 0000 returns a True boolean value, -> 0111 0000 & 1000 0000 returns False, etc to iterate through. '''
         iterator = iter(binary)
         output = []
-        try:
-            while(True):
-                output.append(self.traverseTree(iterator))
-        except StopIteration:
-            output = ''.join(output)
-            #print(output)
-        return(output)
-                    
+        i = 0
+
+        while(True):
+            i += 1
+            if i % 1000000 == 0:
+                if (i//1000000)%2==1:
+                    print("\\",end="\r")
+                else:
+                    print("/",end="\r")
+            outfile.write(self.traverseTree(iterator))
+            
     def traverseTree(self,binary):
         '''Used to traverse the tree given a binary stream for decoding.'''
         return self.root.traverseTree(binary)
@@ -89,9 +91,6 @@ class HuffmanTree():
         # and values equal to their binary codes.
         dict = HuffmanTree.dfs(self.root)
         return dict
-        
-        
-        
         
     def dfs(node,code=""):
         ''' 

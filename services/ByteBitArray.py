@@ -13,7 +13,6 @@ class ByteBitArray:
             self.val = bytearray(len(arg))
             for i in range(len(arg)):
                 self.val[i] = arg[i]
-            
     def __iter__(self):
         for byte in self.val:
             for bit in reversed(range(8)): ## TODO: done

@@ -3,7 +3,6 @@ from services import *
 import re
 import time
 
-
 def hufCode():
     
     filename = input("Please enter a filename (ex: test1.txt).\n")
