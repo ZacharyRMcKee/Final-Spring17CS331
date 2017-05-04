@@ -29,6 +29,7 @@ def encode(dict,content,outfile,tree):
     their huffman encoding, stored as a string. Second input is
     the contents of the file read in earlier to create the 
     huffman tree. Third output is name of output file.'''
+    
     counter = 7
     buffer = 0
     out = open(outfile,"wb")
@@ -49,11 +50,11 @@ def encode(dict,content,outfile,tree):
                         by = bytearray()
                     counter = 7
                     buffer = 0
-                  
-    if buffer != 0:
+    if counter != 7:
         by.append(buffer)
+        out.write(by)
         buffer = 0
-    out.write(by)
+    tree.lastbit = 7 - (counter+1)
     with open("huff.hex","wb") as dout:
         pickle.dump(tree,dout,protocol=pickle.HIGHEST_PROTOCOL)
     
@@ -66,11 +67,34 @@ def decode(outfile):
     coded =  open(outfile,"rb")
     bytestream = services.ByteBitArray.ByteBitArray(coded.read())
     output = open("decoded.txt","w")
-    i = 0
     try:
         tree.decodeTree(bytestream,output)
     except StopIteration:
-        print("We're done!")
+        print("Cleaning up output file ...")
+        coded.seek(-1,1)
+        byte = services.ByteBitArray.ByteBitArray(coded.read(1))
+        counter = 0
+        if tree.lastbit > -1:
+            try:
+                iterator = iter(byte)
+                while(counter <= tree.lastbit):
+                    counter += 1
+                    next(iterator)
+                excessString = []
+                while(True):
+                    excessString.append(tree.traverseTree(iterator)) 
+            except StopIteration:
+                output.close()
+                fix = open("decoded.txt","rb+")
+                fix.seek(-1*len(excessString),2)
+                fix.truncate()
+                fix.close()
+                return
+                
+                
+            
+                
+        return
     
 
 

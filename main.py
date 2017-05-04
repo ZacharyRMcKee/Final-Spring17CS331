@@ -22,13 +22,13 @@ def hufCode():
     file.close()
     filecontents = None
     print("Done encoding.")
+    print("Decoding file, please wait ...")
     huffman.decode("out.hex")
     print("Done decoding.")
     end = time.time()
-    print(end - start)
+    print("Execution took",end - start,"seconds")
 
 if __name__ == '__main__':
-    print("TEST")
     hufCode()
 
 

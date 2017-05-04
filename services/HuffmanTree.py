@@ -36,9 +36,11 @@ class HuffmanTree():
                 return self.right.traverseTree(binary)
             else:
                 return self.left.traverseTree(binary)
+                
+                
     def __init__(self,weight,char=None,left=None,right=None): # an empty HuffmanTree cannot exist
         self.root = self.Node(weight,char,left,right) # When a tree is created, it is one of a forest of trees that are to be merged.
-    
+        self.lastbit = 7
     def setChildren(self,left,right):
         self.root.left = left
         self.root.right = right
@@ -46,17 +48,10 @@ class HuffmanTree():
         ''' binary must be a 'bit-iterable' data structure, in that iteration of bits must be simulated.
         # This can be accomplished by using bitshifts.
         # ex. 1101 1100 -> 1011 1000 & 1000 0000 returns a True boolean value, -> 0111 0000 & 1000 0000 returns False, etc to iterate through. '''
+
         iterator = iter(binary)
         output = []
-        i = 0
-
         while(True):
-            i += 1
-            if i % 1000000 == 0:
-                if (i//1000000)%2==1:
-                    print("\\",end="\r")
-                else:
-                    print("/",end="\r")
             outfile.write(self.traverseTree(iterator))
             
     def traverseTree(self,binary):
@@ -84,7 +79,6 @@ class HuffmanTree():
         
     def __repr__(self):
         return str(self)
-        
         
     def createDictionary(self):
         # implement depth-first search, return a dictionary with keys = characters,
