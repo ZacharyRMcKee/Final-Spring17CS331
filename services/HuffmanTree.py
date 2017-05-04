@@ -26,33 +26,41 @@ class HuffmanTree():
                 out = ""
             parent = str(self)
             return "\t"*(level) + parent + out + left + right
+        def traverseTree(self,binary):
             
+            if self.char:
+                return self.char # should be char?
+            else:
+                bit = next(binary)
+            if bit:
+                return self.right.traverseTree(binary)
+            else:
+                return self.left.traverseTree(binary)
     def __init__(self,weight,char=None,left=None,right=None): # an empty HuffmanTree cannot exist
         self.root = self.Node(weight,char,left,right) # When a tree is created, it is one of a forest of trees that are to be merged.
     
     def setChildren(self,left,right):
         self.root.left = left
         self.root.right = right
+    #@profile
     def decodeTree(self,binary): # TODO: also include a terminator when max character has been reached
         ''' binary must be a 'bit-iterable' data structure, in that iteration of bits must be simulated.
         # This can be accomplished by using bitshifts.
         # ex. 1101 1100 -> 1011 1000 & 1000 0000 returns a True boolean value, -> 0111 0000 & 1000 0000 returns False, etc to iterate through. '''
         iterator = iter(binary)
-        output = ""
+        output = []
         try:
             while(True):
-                output += self.traverseTree(iterator)
+                output.append(self.traverseTree(iterator))
         except StopIteration:
-            print(output)
+            output = ''.join(output)
+            #print(output)
+        return(output)
                     
     def traverseTree(self,binary):
         '''Used to traverse the tree given a binary stream for decoding.'''
-        if self.root.char:
-            return self # should be char?
-        if bit:
-            traverseTree(self.right,next(binary))
-        else:
-            traverseTree(self.left,next(binary))
+        return self.root.traverseTree(binary)
+        
     def __str__(self):
         return self.printTree(0,"")
     def printTree(self,level,code=""):

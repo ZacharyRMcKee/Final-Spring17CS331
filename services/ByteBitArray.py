@@ -34,3 +34,4 @@ class ByteBitArray:
         
     def __delitem__(self,idx):
         self.val[idx] = 0 # Cannot delete bytes, only set them to zero
+    

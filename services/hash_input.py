@@ -1,14 +1,14 @@
 import sys
 
-def file_to_dict(file):
+def file_to_dict(content):
     chars = [0]*128
-    with open(file) as f:
-        content = f.readlines()
+
     i = 0
     for line in content:
         i += 1
         if i % 1000 == 0:
             print("Scanning line " + str(i),end=" ... \r")
+        
         for c in line:
             index = ord(c)
             #if index < 128:
@@ -19,6 +19,7 @@ def file_to_dict(file):
             #    dummy = input()
             #    if input == "exit" or input == "'exit'":
             #        sys.exit()
+    print("Scanning finished.")
     print("Frequency of characters -- format: CHAR -- FREQ")
     for i in range(128):
         print(repr(chr(i)) + " -- " + str(chars[i]))
