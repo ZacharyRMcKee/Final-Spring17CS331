@@ -7,7 +7,7 @@ Usage:
 python main.py
 ```
 
-##IMPORTANT: This was developed using Python 3.6, this program will not run if you attempt to run it with Python 2.
+## IMPORTANT: This was developed using Python 3.6, this program will not run if you attempt to run it with Python 2.
 
 You can also execute the script itself from Explorer if you wish.
 
