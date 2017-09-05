@@ -2,12 +2,12 @@
 
 This serves as a working directory for my submission for this section's final project.
 
+### IMPORTANT: This was developed using Python 3.6, this program will not run if you attempt to run it with Python 2.
+
 Usage:
 ```
 python main.py
 ```
-
-### IMPORTANT: This was developed using Python 3.6, this program will not run if you attempt to run it with Python 2.
 
 You can also execute the script itself from Explorer if you wish.
 
